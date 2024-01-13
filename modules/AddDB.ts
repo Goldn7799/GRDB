@@ -3,7 +3,7 @@ import fs from 'fs'
 
 function AddDB (id: string, type: 'array' | 'object'): boolean {
   if (id === undefined || type === undefined) return false
-  if ((Object.keys(ListDBSync.getData())).includes(id)) return false
+  if ((ListDBSync.getAllDataId()).includes(id)) return false
   let thisData: object | any[] | null = null
   if (type === 'array') {
     thisData = []
