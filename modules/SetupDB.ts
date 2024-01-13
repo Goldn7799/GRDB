@@ -2,7 +2,7 @@ import fs from 'fs'
 
 async function SetupDB (path: string): Promise<boolean> {
   try {
-    fs.readdirSync(`${path}`)
+    await Promise.resolve(fs.readdirSync(`${path}`))
   } catch (e) {
     try {
       fs.mkdirSync(`${path}`)
@@ -13,7 +13,7 @@ async function SetupDB (path: string): Promise<boolean> {
     }
   }
   try {
-    fs.readdirSync(`${path}/data`)
+    await Promise.resolve(fs.readdirSync(`${path}/data`))
   } catch (e) {
     try {
       fs.mkdirSync(`${path}/data`)
@@ -24,7 +24,7 @@ async function SetupDB (path: string): Promise<boolean> {
     }
   }
   try {
-    fs.readdirSync(`${path}/volume`)
+    await Promise.resolve(fs.readdirSync(`${path}/volume`))
   } catch (e) {
     try {
       fs.mkdirSync(`${path}/volume`)
@@ -35,10 +35,10 @@ async function SetupDB (path: string): Promise<boolean> {
     }
   }
   try {
-    fs.readFileSync(`${path}/data/database-list.json`)
+    await Promise.resolve(fs.readFileSync(`${path}/data/database-list.json`))
   } catch (e) {
     try {
-      fs.writeFileSync(`${path}/data/database-list.json`, JSON.stringify({}))
+      fs.writeFileSync(`${path}/data/database-list.json`, JSON.stringify([]))
     } catch (e) {
       console.log(`Failed to create ${path}/data/database-list.json`)
       console.error(e)
