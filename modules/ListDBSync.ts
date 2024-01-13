@@ -20,8 +20,8 @@ function sync (): void {
   }, timeoutSync)
 }
 
-async function start (path: string, timeout: number): Promise<void> {
-  if (path === '' || timeout < 1000) return
+async function start (path: string, timeout: number): Promise<boolean> {
+  if (path === '' || timeout < 1000) return false
   isSync = true
   pathSync = `${path}/data/database-list.json`
   dirPathSync = path
@@ -29,6 +29,7 @@ async function start (path: string, timeout: number): Promise<void> {
   const readFile = async (): Promise<string> => fs.readFileSync(pathSync, 'utf-8')
   data = JSON.parse(await readFile())
   sync()
+  return true
 }
 
 function stop (): void {
