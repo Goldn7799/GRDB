@@ -1,10 +1,15 @@
 import fs from 'fs'
 
+interface dataStructure {
+  id: string
+  type: 'array' | 'object'
+}
+
 let isSync: boolean = false
 let pathSync: string = ''
 let dirPathSync: string = ''
 let timeoutSync: number = 0
-let data: string[] = []
+let data: dataStructure[] = []
 
 function sync (): void {
   fs.writeFileSync(pathSync, JSON.stringify(data))
@@ -30,7 +35,7 @@ function stop (): void {
   isSync = false
 }
 
-function getData (): string[] {
+function getData (): dataStructure[] {
   return data
 }
 
@@ -42,15 +47,24 @@ function getDirPath (): string {
   return dirPathSync
 }
 
-function addData (newData: string): boolean {
-  data.push(newData)
+function addData (id: string, type: 'array' | 'object'): boolean {
+  data.push({ id, type })
   return true
 }
 
-function removeData (thisData: string): boolean {
-  const thisDataIndex: number = data.indexOf(thisData)
-  data.splice(thisDataIndex, 1)
+function removeData (thisId: string): boolean {
+  data = data.filter(thisData => thisData.id !== thisId)
   return true
+}
+
+function getAllDataId (): string[] {
+  return data.map(thisData => thisData.id)
+}
+
+function getDBProperties (id: string): dataStructure {
+  // if (!(getAllDataId()).includes(id)) return false
+  const thisDataFiltered: dataStructure = data.filter(thisData => thisData.id === id)[0]
+  return thisDataFiltered
 }
 
 const ListDBSync = {
@@ -59,6 +73,8 @@ const ListDBSync = {
   getIsSync,
   getData,
   getDirPath,
+  getAllDataId,
+  getDBProperties,
   addData,
   removeData
 }

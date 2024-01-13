@@ -3,7 +3,7 @@ import fs from 'fs'
 
 function AddDB (id: string, type: 'array' | 'object'): boolean {
   if (id === undefined || type === undefined) return false
-  if ((ListDBSync.getData()).includes(id)) return false
+  if ((Object.keys(ListDBSync.getData())).includes(id)) return false
   let thisData: object | any[] | null = null
   if (type === 'array') {
     thisData = []
@@ -12,7 +12,7 @@ function AddDB (id: string, type: 'array' | 'object'): boolean {
   } else {
     return false
   }
-  ListDBSync.addData(id)
+  ListDBSync.addData(id, type)
   fs.writeFileSync(`${ListDBSync.getDirPath()}/volume/${id}.json`, JSON.stringify(thisData))
   return true
 }

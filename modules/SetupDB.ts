@@ -38,7 +38,7 @@ async function SetupDB (path: string): Promise<boolean> {
     fs.readFileSync(`${path}/data/database-list.json`)
   } catch (e) {
     try {
-      fs.writeFileSync(`${path}/data/database-list.json`, JSON.stringify([]))
+      fs.writeFileSync(`${path}/data/database-list.json`, JSON.stringify({}))
     } catch (e) {
       console.log(`Failed to create ${path}/data/database-list.json`)
       console.error(e)
