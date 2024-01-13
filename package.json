@@ -1,0 +1,36 @@
+{
+  "name": "grdb",
+  "version": "1.0.0",
+  "description": "A databases service based on JSON, using typescript",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {
+    "test": "bun run eslint index.ts && bun run eslint ./modules/*",
+    "testnfix": "bun run eslint index.ts --fix && bun run eslint ./modules/* --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Goldn7799/GRDB.git"
+  },
+  "keywords": [
+    "api",
+    "databases",
+    "json"
+  ],
+  "author": "SGStudio",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Goldn7799/GRDB/issues"
+  },
+  "homepage": "https://github.com/Goldn7799/GRDB#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "^43.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0",
+    "typescript": "*",
+    "@types/bun": "latest"
+  }
+}
