@@ -3,6 +3,7 @@ import WriteDB from './WriteDB'
 import ReadDB from './ReadDB'
 
 async function pushData (id: string, newData: string | object): Promise<boolean> {
+  if (ListDBSync.getSyncMode() === 'client') return false
   if (id === undefined || newData === undefined) return false
   if (!(ListDBSync.getAllDataId()).includes(id)) return false
   if ((ListDBSync.getDBProperties(id)).type !== 'array') return false
@@ -13,6 +14,7 @@ async function pushData (id: string, newData: string | object): Promise<boolean>
 }
 
 async function removeData (id: string, index: number): Promise<boolean> {
+  if (ListDBSync.getSyncMode() === 'client') return false
   if (id === undefined || index === null) return false
   if (!(ListDBSync.getAllDataId()).includes(id)) return false
   if ((ListDBSync.getDBProperties(id)).type !== 'array') return false
