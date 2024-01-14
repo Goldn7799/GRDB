@@ -6,7 +6,7 @@ import WriteDB from './modules/WriteDB'
 import ListDBSync from './modules/ListDBSync'
 import Operation from './modules/Operation'
 
-const modules = {
+const grdb = {
   Internal: {
     getIsSync: ListDBSync.getIsSync
   },
@@ -19,4 +19,4 @@ const modules = {
   Operation
 }
 
-export default modules
+export default grdb
